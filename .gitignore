@@ -91,6 +91,8 @@ fabric.properties
 #!.idea/runConfigurations
 
 ### Java ###
+/src/main/generated
+
 # Compiled class file
 *.class
 
