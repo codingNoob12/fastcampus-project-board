@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-@Disabled("View 컨트롤러 - 게시글")
+@DisplayName("View 컨트롤러 - 게시글")
 @Import(SecurityConfig.class)
 @WebMvcTest(ArticleController.class)
 class ArticleControllerTest {
