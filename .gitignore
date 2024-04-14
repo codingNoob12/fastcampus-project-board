@@ -90,6 +90,9 @@ fabric.properties
 #!.idea/codeStyles
 #!.idea/runConfigurations
 
+## JPA Buddy
+.jpb/
+
 ### Java ###
 /src/main/generated
 
