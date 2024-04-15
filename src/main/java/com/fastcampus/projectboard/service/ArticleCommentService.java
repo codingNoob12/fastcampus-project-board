@@ -19,7 +19,15 @@ public class ArticleCommentService {
         return List.of();
     }
 
-    public void saveArticleComments(ArticleCommentDto comment) {
-        
+    public void saveArticleComment(ArticleCommentDto comment) {
+
+    }
+
+    public void updateArticleComment(ArticleCommentDto comment) {
+
+    }
+
+    public void deleteArticleComment(Long articleCommentId) {
+
     }
 }
