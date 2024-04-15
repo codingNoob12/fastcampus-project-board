@@ -50,6 +50,7 @@ public class ArticleController {
             .from(articleService.searchArticle(articleId));
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.articleCommentsResponses());
+        map.addAttribute("totalCount", articleService.getArticleCount());
         return "articles/detail";
     }
 }
