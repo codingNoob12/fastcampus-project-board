@@ -33,7 +33,7 @@ public record ArticleWithCommentsResponse(
 
         return new ArticleWithCommentsResponse(
             dto.id(),
-            dto.content(),
+            dto.title(),
             dto.content(),
             dto.hashtag(),
             dto.createdAt(),
