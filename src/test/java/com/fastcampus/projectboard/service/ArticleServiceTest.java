@@ -58,7 +58,7 @@ class ArticleServiceTest {
         SearchType searchType = SearchType.TITLE;
         String searchKeyword = "title";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByTitle(searchKeyword, pageable))
+        given(articleRepository.findByTitleContaining(searchKeyword, pageable))
             .willReturn(Page.empty());
 
         // When
@@ -67,7 +67,8 @@ class ArticleServiceTest {
 
         // Then
         assertThat(articles).isEmpty();
-        then(articleRepository).should().findByTitle(searchKeyword, pageable);
+        then(articleRepository).should()
+            .findByTitleContaining(searchKeyword, pageable);
     }
 
     @DisplayName("게시글을 조회하면, 게시글을 반환한다.")
@@ -137,7 +138,7 @@ class ArticleServiceTest {
 
         // Then
         assertThat(article)
-            .hasFieldOrPropertyWithValue("title", dto.content())
+            .hasFieldOrPropertyWithValue("title", dto.title())
             .hasFieldOrPropertyWithValue("content", dto.content())
             .hasFieldOrPropertyWithValue("hashtag", dto.hashtag());
         then(articleRepository).should().getReferenceById(dto.id());
