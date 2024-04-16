@@ -54,7 +54,7 @@ class JpaRepositoryTest {
 
         // When
         UserAccount userAccount = userAccountRepository.save(
-            UserAccount.of("codingNoob12", "pw", null, null, null));
+            UserAccount.of("newCodingNoob12", "pw", null, null, null));
         Article savedArticle = articleRepository.save(
             Article.of(userAccount, "new article", "new content", "#spring"));
 
