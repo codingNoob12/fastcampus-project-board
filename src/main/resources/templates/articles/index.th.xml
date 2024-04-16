@@ -41,18 +41,18 @@
   <attr sel="#pagination">
     <attr sel="li[0]/a"
       th:class="'page-link' + (${articles.number} <= 0 ? ' disabled' : '')"
-      th:href="@{/articles(page=${articles.number - 1})}"
+      th:href="@{/articles(page=${articles.number - 1}, sort=${param.sort})}"
       th:text="'previous'"/>
     <attr sel="li[1]" th:class="page-item"
       th:each="pageNumber : ${paginationBarNumbers}">
       <attr sel="a"
         th:class="'page-link' + (${pageNumber} == ${articles.number} ? ' disabled' : '')"
-        th:href="@{/articles(page=${pageNumber})}"
+        th:href="@{/articles(page=${pageNumber}, sort=${param.sort})}"
         th:text="${pageNumber + 1}"/>
     </attr>
     <attr sel="li[2]/a"
       th:class="'page-link' + (${articles.number} >= ${articles.totalPages - 1} ? ' disabled' : '')"
-      th:href="@{/articles(page=${articles.number + 1})}"
+      th:href="@{/articles(page=${articles.number + 1}, sort=${param.sort})}"
       th:text="'next'"/>
   </attr>
 </thlogic>
