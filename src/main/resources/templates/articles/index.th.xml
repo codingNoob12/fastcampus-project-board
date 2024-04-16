@@ -31,7 +31,7 @@
         <attr sel="td.title/a" th:href="@{'/articles/{id}'(id=${article.id})}"
           th:text="${article.title}"/>
         <attr sel="td.hashtag" th:text="${article.hashtag}"/>
-        <attr sel="td.user-id" th:text="${article.nickname}"/>
+        <attr sel="td.created-by" th:text="${article.nickname}"/>
         <attr sel="td.created-at/time"
           th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}"/>
       </attr>
