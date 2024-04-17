@@ -7,6 +7,7 @@ import com.fastcampus.projectboard.service.ArticleService;
 import com.fastcampus.projectboard.service.PaginationService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+@Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/articles")
 @Controller
@@ -53,5 +55,26 @@ public class ArticleController {
         map.addAttribute("articleComments", article.articleCommentsResponses());
         map.addAttribute("totalCount", articleService.getArticleCount());
         return "articles/detail";
+    }
+
+    @GetMapping("/search-hashtag")
+    public String searchHashtag(
+        @RequestParam(required = false) String searchValue,
+        @PageableDefault(size = 10, sort = "createdAt", direction = Direction.DESC) Pageable pageable,
+        ModelMap map
+    ) {
+        log.info("pageable={}", pageable);
+        Page<ArticleResponse> articles = articleService.searchArticlesViaHashtag(
+            searchValue, pageable).map(ArticleResponse::from);
+        List<String> hashtags = articleService.getHashtags();
+        List<Integer> paginationBarNumbers = paginationService.getPaginationBarNumbers(
+            pageable.getPageNumber(),
+            articles.getTotalPages());
+
+        map.addAttribute("articles", articles);
+        map.addAttribute("hashtags", hashtags);
+        map.addAttribute("paginationBarNumbers", paginationBarNumbers);
+        map.addAttribute("searchType", SearchType.HASHTAG);
+        return "articles/search-hashtag";
     }
 }
