@@ -1,5 +1,6 @@
 package com.fastcampus.projectboard.controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.head;
@@ -106,11 +107,13 @@ public class DataRestTest {
 
         // When
         mvc.perform(get("/api/userAccounts")).andExpect(status().isNotFound());
-        mvc.perform(post("/api/userAccounts")).andExpect(status().isNotFound());
-        mvc.perform(put("/api/userAccounts")).andExpect(status().isNotFound());
-        mvc.perform(patch("/api/userAccounts"))
+        mvc.perform(post("/api/userAccounts").with(csrf()))
             .andExpect(status().isNotFound());
-        mvc.perform(delete("/api/userAccounts"))
+        mvc.perform(put("/api/userAccounts").with(csrf()))
+            .andExpect(status().isNotFound());
+        mvc.perform(patch("/api/userAccounts").with(csrf()))
+            .andExpect(status().isNotFound());
+        mvc.perform(delete("/api/userAccounts").with(csrf()))
             .andExpect(status().isNotFound());
         mvc.perform(head("/api/userAccounts")).andExpect(status().isNotFound());
     }
