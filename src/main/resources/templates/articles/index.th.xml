@@ -37,7 +37,7 @@
           searchType=${param.searchType},
           searchValue=${param.searchValue}
         )}" th:text="'작성자'"/>
-        <attr sel="th.user-id/a" th:href="@{/articles(
+        <attr sel="th.created-at/a" th:href="@{/articles(
           page=*{number},
           sort='createdAt' + (*{sort.getOrderFor('createdAt')} != null ? (*{sort.getOrderFor('createdAt').direction.name} != 'DESC' ? ',desc' : '') : ''),
           searchType=${param.searchType},
@@ -50,7 +50,7 @@
         <attr sel="td.title/a" th:href="@{'/articles/{id}'(id=${article.id})}"
           th:text="${article.title}"/>
         <attr sel="td.hashtag" th:text="${article.hashtag}"/>
-        <attr sel="td.created-by" th:text="${article.nickname}"/>
+        <attr sel="td.user-id" th:text="${article.nickname}"/>
         <attr sel="td.created-at/time"
           th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}"/>
       </attr>
