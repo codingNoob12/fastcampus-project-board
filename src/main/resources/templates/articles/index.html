@@ -30,7 +30,7 @@
   <div class="row">
     <div class="card card-margin search-form">
       <div class="card-body p-0">
-        <form action="/articles" method="get">
+        <form id="search-form">
           <div class="row">
             <div class="col-12">
               <div class="row no-gutters">
@@ -71,42 +71,51 @@
     </div>
   </div>
 
-  <table class="table" id="article-table">
-    <thead>
-    <tr>
-      <th class="title col-6"><a>제목</a></th>
-      <th class="hashtag col"><a>해시태그</a></th>
-      <th class="user-id col"><a>작성자</a></th>
-      <th class="created-at col"><a>작성일</a></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td class="title"><a>첫글</a></td>
-      <td class="hashtag">#java</td>
-      <td class="created-by">codingNoob12</td>
-      <td class="created-at">
-        <time>2022-01-01</time>
-      </td>
-    </tr>
-    <tr>
-      <td>두번째글</td>
-      <td>#spring</td>
-      <td>codingNoob12</td>
-      <td>
-        <time>2022-01-02</time>
-      </td>
-    </tr>
-    <tr>
-      <td>세번째글</td>
-      <td>#java</td>
-      <td>codingNoob12</td>
-      <td>
-        <time>2022-01-03</time>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <table class="table" id="article-table">
+      <thead>
+      <tr>
+        <th class="title col-6"><a>제목</a></th>
+        <th class="hashtag col"><a>해시태그</a></th>
+        <th class="user-id col"><a>작성자</a></th>
+        <th class="created-at col"><a>작성일</a></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="title"><a>첫글</a></td>
+        <td class="hashtag">#java</td>
+        <td class="user-id">codingNoob12</td>
+        <td class="created-at">
+          <time>2022-01-01</time>
+        </td>
+      </tr>
+      <tr>
+        <td>두번째글</td>
+        <td>#spring</td>
+        <td>codingNoob12</td>
+        <td>
+          <time>2022-01-02</time>
+        </td>
+      </tr>
+      <tr>
+        <td>세번째글</td>
+        <td>#java</td>
+        <td>codingNoob12</td>
+        <td>
+          <time>2022-01-03</time>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <a class="btn btn-primary me-md-2" id="write-article"
+         role="button">글쓰기</a>
+    </div>
+  </div>
 
   <nav aria-label="Page navigation example" id="pagination">
     <ul class="pagination justify-content-center">

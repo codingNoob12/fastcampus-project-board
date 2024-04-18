@@ -29,7 +29,7 @@
   </header>
 
   <div class="row g-5">
-    <section class="col-md-5 col-lg-4 order-md-last">
+    <section class="col-md-3 col-lg-4 order-md-last">
       <aside>
         <p><span id="nickname">Uno</span></p>
         <p><a href="mailto:djkehh@gmail.com" id="email">uno@mail.com</a></p>
@@ -40,31 +40,41 @@
       </aside>
     </section>
 
-    <article class="col-md-7 col-lg-8" id="article-content">
+    <article class="col-md-9 col-lg-8" id="article-content">
       <pre>본문</pre>
     </article>
+  </div>
+
+  <div class="row g-5" id="article-buttons">
+    <form id="delete-article-form">
+      <div class="pb-5 d-grid gap-2 d-md-block">
+        <a class="btn btn-success me-md-2" id="update-article"
+           role="button">수정</a>
+        <button class="btn btn-danger me-md-2" type="submit">삭제</button>
+      </div>
+    </form>
   </div>
 
   <div class="row g-5">
     <section>
       <form class="row g-3">
-        <div class="col-8">
+        <div class="col-md-9 col-lg-8">
           <label for="comment-textbox" hidden>댓글</label>
           <textarea class="form-control" id="comment-textbox"
                     placeholder="댓글 쓰기.." rows="3"></textarea>
         </div>
-        <div class="col-auto">
+        <div class="col-md-3 col-lg-4">
           <label for="comment-submit" hidden>댓글 쓰기</label>
           <button class="btn btn-primary" id="comment-submit" type="submit">쓰기
           </button>
         </div>
       </form>
 
-      <ul class="row col-7" id="article-comments">
+      <ul class="row col-md-10 col-lg-8 pt-3" id="article-comments">
         <li>
-          <div>
-            <time>2022-01-01</time>
+          <div class="row">
             <strong>Uno</strong>
+            <time>2022-01-01</time>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
               Lorem ipsum dolor sit amet
@@ -72,9 +82,9 @@
           </div>
         </li>
         <li>
-          <div>
+          <div class="row">
+            <strong>Uno2</strong>
             <time>2022-01-01</time>
-            <strong>Uno</strong>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
               Lorem ipsum dolor sit amet
@@ -88,7 +98,7 @@
 
 
   <div class="row g-5">
-    <nav aria-label="Page navigation example" id="pagination">
+    <nav aria-label="Page navigation" id="pagination">
       <ul class="pagination">
         <li class="page-item">
           <a aria-label="Previous" class="page-link" href="#">

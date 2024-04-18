@@ -6,6 +6,7 @@
   <attr sel="#table-header-css" th:href="@{/css/articles/table-header.css}"/>
 
   <attr sel="main" th:object="${articles}">
+    <attr sel="#search-form" th:action="@{/articles}" th:method="get"/>
     <attr sel="#search-type" th:remove="all-but-first">
       <attr sel="option[0]"
         th:each="searchType : ${searchTypes}"
@@ -49,12 +50,14 @@
         <attr sel="td.title/a" th:href="@{'/articles/{id}'(id=${article.id})}"
           th:text="${article.title}"/>
         <attr sel="td.hashtag" th:text="${article.hashtag}"/>
-        <attr sel="td.created-by" th:text="${article.nickname}"/>
+        <attr sel="td.user-id" th:text="${article.nickname}"/>
         <attr sel="td.created-at/time"
           th:text="${#temporals.format(article.createdAt, 'yyyy-MM-dd')}"/>
       </attr>
     </attr>
   </attr>
+
+  <attr sel="#write-article" th:href="@{/articles/form}"/>
 
   <attr sel="#pagination">
     <attr sel="li[0]/a"
