@@ -6,6 +6,7 @@
   <attr sel="#table-header-css" th:href="@{/css/articles/table-header.css}"/>
 
   <attr sel="main" th:object="${articles}">
+    <attr sel="#search-form" th:action="@{/articles}" th:method="get"/>
     <attr sel="#search-type" th:remove="all-but-first">
       <attr sel="option[0]"
         th:each="searchType : ${searchTypes}"
@@ -36,7 +37,7 @@
           searchType=${param.searchType},
           searchValue=${param.searchValue}
         )}" th:text="'작성자'"/>
-        <attr sel="th.created-at/a" th:href="@{/articles(
+        <attr sel="th.user-id/a" th:href="@{/articles(
           page=*{number},
           sort='createdAt' + (*{sort.getOrderFor('createdAt')} != null ? (*{sort.getOrderFor('createdAt').direction.name} != 'DESC' ? ',desc' : '') : ''),
           searchType=${param.searchType},
@@ -55,6 +56,8 @@
       </attr>
     </attr>
   </attr>
+
+  <attr sel="#write-article" th:href="@{/articles/form}"/>
 
   <attr sel="#pagination">
     <attr sel="li[0]/a"
