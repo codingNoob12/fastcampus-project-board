@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<thlogic>
+  <attr sel="#home" th:href="@{/}"/>
+  <attr sel="#hashtag" th:href="@{/articles/search-hashtag}"/>
+
+  <attr sec:authentication="name" sec:authorize="isAuthenticated()"
+    sel="#username"/>
+  <attr sec:authorize="!isAuthenticated()" sel="#login" th:href="@{/login}"/>
+  <attr sec:authorize="isAuthenticated()" sel="#logout" th:href="@{/logout}"/>
+</thlogic>

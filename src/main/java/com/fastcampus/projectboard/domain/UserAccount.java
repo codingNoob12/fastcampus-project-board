@@ -63,7 +63,7 @@ public class UserAccount extends AuditingFields {
         if (!(object instanceof UserAccount userAccount)) {
             return false;
         }
-        return userId != null && userId.equals(userAccount.userId);
+        return userId != null && userId.equals(userAccount.getUserId());
     }
 
     @Override

@@ -9,7 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.fastcampus.projectboard.config.SecurityConfig;
+import com.fastcampus.projectboard.config.TestSecurityConfig;
 import com.fastcampus.projectboard.dto.ArticleCommentDto;
 import com.fastcampus.projectboard.dto.request.ArticleCommentRequest;
 import com.fastcampus.projectboard.service.ArticleCommentService;
@@ -22,11 +22,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.TestExecutionEvent;
+import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 
 
 @DisplayName("view 컨트롤러 - 댓글")
-@Import({SecurityConfig.class, FormDataEncoder.class})
+@Import({TestSecurityConfig.class, FormDataEncoder.class})
 @WebMvcTest(ArticleCommentController.class)
 class ArticleCommentControllerTest {
 
@@ -43,6 +45,7 @@ class ArticleCommentControllerTest {
         this.formDataEncoder = formDataEncoder;
     }
 
+    @WithUserDetails(value = "unoTest", setupBefore = TestExecutionEvent.TEST_EXECUTION)
     @DisplayName("[view] [POST] 댓글 등록 - 정상 호출")
     @Test
     void givenArticleCommentInfo_whenRequesting_thenSavesArticleComment()
@@ -67,6 +70,7 @@ class ArticleCommentControllerTest {
             .saveArticleComment(any(ArticleCommentDto.class));
     }
 
+    @WithUserDetails(value = "unoTest", setupBefore = TestExecutionEvent.TEST_EXECUTION)
     @DisplayName("[view] [POST] 댓글 삭제 - 정상 호출")
     @Test
     void givenArticleCommentIdToDelete_whenRequesting_thenDeletesArticleComment()
@@ -74,8 +78,9 @@ class ArticleCommentControllerTest {
         // Given
         long articleId = 1L;
         long articleCommentId = 1L;
+        String userId = "unoTest";
         willDoNothing().given(articleCommentService)
-            .deleteArticleComment(articleCommentId);
+            .deleteArticleComment(articleCommentId, userId);
 
         // When & Then
         mvc.perform(
@@ -88,6 +93,6 @@ class ArticleCommentControllerTest {
             .andExpect(view().name("redirect:/articles/" + articleId))
             .andExpect(redirectedUrl("/articles/" + articleId));
         then(articleCommentService).should()
-            .deleteArticleComment(articleCommentId);
+            .deleteArticleComment(articleCommentId, userId);
     }
 }

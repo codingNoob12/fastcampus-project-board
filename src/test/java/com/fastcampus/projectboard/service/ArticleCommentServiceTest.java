@@ -89,7 +89,6 @@ class ArticleCommentServiceTest {
         ArticleCommentDto dto = createArticleCommentDto("댓글");
         given(articleRepository.getReferenceById(dto.articleId()))
             .willThrow(EntityNotFoundException.class);
-
         // When
         sut.saveArticleComment(dto);
 
@@ -140,14 +139,16 @@ class ArticleCommentServiceTest {
     void givenArticleCommentId_whenDeletingArticleComment_thenDeletesArticleComment() {
         // Given
         Long articleCommentId = 1L;
+        String userId = "unoTest";
         willDoNothing().given(articleCommentRepository)
-            .deleteById(articleCommentId);
+            .deleteByIdAndUserAccount_UserId(articleCommentId, userId);
 
         // When
-        sut.deleteArticleComment(articleCommentId);
+        sut.deleteArticleComment(articleCommentId, userId);
 
         // Then
-        then(articleCommentRepository).should().deleteById(articleCommentId);
+        then(articleCommentRepository).should()
+            .deleteByIdAndUserAccount_UserId(articleCommentId, userId);
     }
 
     private ArticleCommentDto createArticleCommentDto(String content) {
